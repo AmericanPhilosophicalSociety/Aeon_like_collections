@@ -15,9 +15,11 @@
           <group name="{@name}">
             <xsl:for-each-group select="url" group-by=".">
               <xsl:sort select="./following-sibling::*[2]" data-type="number" order="descending"/>
-              <xsl:copy-of select="."/>
-              <xsl:copy-of select="./following-sibling::*[1]"/>
-              <xsl:copy-of select="./following-sibling::*[2]"/>  
+              <xsl:if test=". != ../@name">
+                <xsl:copy-of select="."/>
+                <xsl:copy-of select="./following-sibling::*[1]"/>
+                <xsl:copy-of select="./following-sibling::*[2]"/> 
+              </xsl:if>
             </xsl:for-each-group>
           </group>
         </xsl:for-each>
